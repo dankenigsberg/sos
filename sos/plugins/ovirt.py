@@ -83,6 +83,8 @@ class Ovirt(Plugin, RedHatPlugin):
 
         # Copy all engine tunables and domain information
         self.add_cmd_output("engine-config --all")
+        # ... and also only the diff from the "factory defaults", if available
+        self.add_cmd_output("engine-config -d")
 
         # 3.x line uses engine-manage-domains, 4.x uses ovirt-aaa-jdbc-tool
         manage_domains = 'engine-manage-domains'
